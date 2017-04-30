@@ -9,13 +9,14 @@ Rectangle::Rectangle(int a , int b, int l, int w, string n)
 	y=b;
 	length=l;
 	width=w;
+	name=n;
 }
 
 bool Rectangle::collision(Rectangle other)
 {
 	if ( x < other.getX()+other.getLength() || y < other.getY()+other.getLength() )
 	{
-		std::cout << "Collision!";
+		cout << "Collision between " << name << " and " << other.getName() << "!";
 		return true;
 	}
 	else
@@ -41,7 +42,7 @@ void Rectangle::setY(int why)
 {
 	y=why;
 }
-void Rectangle::setName(std::string s)
+void Rectangle::setName(string s)
 {
 	name=s;
 }
@@ -62,7 +63,7 @@ int Rectangle::getY()
 {
 	return y;
 }
-std::string Rectangle::getName()
+string Rectangle::getName()
 {
 	return name;
 }

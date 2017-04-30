@@ -12,11 +12,24 @@ Rectangle::Rectangle(int a , int b, int l, int w, string n)
 	name=n;
 }
 
+Rectangle::Rectangle(int l, int w, string n)
+{
+	std::cout << "Creating rectangle without (x,y) and area of " << l << "x" << w << " and name " << n << "\n";
+	x=0;
+	y=0;
+	length=l;
+	width=w;
+	name=n;
+}
+
 bool Rectangle::collision(Rectangle other)
 {
 	if ( x < other.getX()+other.getLength() || y < other.getY()+other.getLength() )
 	{
-		cout << "Collision between " << name << " and " << other.getName() << "!";
+		cout << "Collision between ";
+		cout << name << "( " << length << "x" << width << "@(" << x << "," << y << "))";
+		cout << " and ";
+		cout << other.getName() << "( " << other.getLength() << "x" << other.getWidth() << "@(" << other.getX() << "," << other.getY() << "))";
 		return true;
 	}
 	else

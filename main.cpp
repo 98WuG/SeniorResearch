@@ -1,15 +1,28 @@
 #include <iostream>
 #include "rectangle.h"
+#include <fstream>
+#include <string>
+#include <vector>
 
 using namespace std;
 
 int main()
 {
-	Rectangle first(0,0,4,3,"first");
+	//Read in config file 
+	ifstream file("config");
+	string str;
+	vector<Rectangle> rekt;
+	while (std::getline(file, str))
+	{
+		//Parse line by line by "x y name"
+		int x = stoi( str.substr(0,1) );
+		int y = stoi( str.substr(2,1) );
+		string name = str.substr( 4,str.length()-1 );
+		//Add to vector "rekt" and print out information
+		rekt.push_back( Rectangle(x,y,name) );
+	}
 
-	cout << "Length: " << first.getLength() << "\n";
+	cout << "\nAdded " << rekt.size() << " rectangles" << endl;
 
-	Rectangle second(3,3,5,2,"second");
-
-	second.collision(first);
+	rekt[0].collision(rekt[1]);
 }

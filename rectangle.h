@@ -10,6 +10,7 @@ class Rectangle {
 		std::string name;
 	public:
 		Rectangle(int a, int b, int l, int w, std::string n);
+		Rectangle(int l, int w, std::string n);
 		void setLength(int);
 		void setWidth(int);
 		void setX(int);

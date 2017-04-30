@@ -4,7 +4,7 @@ using namespace std;
 
 Rectangle::Rectangle(int a , int b, int l, int w, string n)
 {
-	std::cout << "Creating rectangle with (x,y)=(" << a << "," << b << ") and area of " << l << "x" << w << " and name " << n << "\n";
+	cout << "Creating rectangle with (x,y)=(" << a << "," << b << ") and area of " << l << "x" << w << " and name " << n << "\n";
 	x=a;
 	y=b;
 	length=l;
@@ -14,7 +14,7 @@ Rectangle::Rectangle(int a , int b, int l, int w, string n)
 
 Rectangle::Rectangle(int l, int w, string n)
 {
-	std::cout << "Creating rectangle without (x,y) and area of " << l << "x" << w << " and name " << n << "\n";
+	cout << "Creating rectangle with default (x,y) and area of " << l << "x" << w << " and name " << n << "\n";
 	x=0;
 	y=0;
 	length=l;
@@ -22,14 +22,15 @@ Rectangle::Rectangle(int l, int w, string n)
 	name=n;
 }
 
+//Check for collision against specific rectangle
 bool Rectangle::collision(Rectangle other)
 {
 	if ( x < other.getX()+other.getLength() || y < other.getY()+other.getLength() )
 	{
 		cout << "Collision between ";
-		cout << name << "( " << length << "x" << width << "@(" << x << "," << y << "))";
+		cout << name << "(" << length << "x" << width << "@(" << x << "," << y << "))";
 		cout << " and ";
-		cout << other.getName() << "( " << other.getLength() << "x" << other.getWidth() << "@(" << other.getX() << "," << other.getY() << "))";
+		cout << other.getName() << "(" << other.getLength() << "x" << other.getWidth() << "@(" << other.getX() << "," << other.getY() << "))" << endl;
 		return true;
 	}
 	else

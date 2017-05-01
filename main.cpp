@@ -59,7 +59,7 @@ vector<Rectangle> place(Rectangle meme, vector<Rectangle> sol)
 		}
 		else
 		{
-			cout << meme.getName() << " " << meme.getY() << " " << meme.getX() << endl;
+			cout << meme.getName() << " " << meme.getX() << " " << meme.getY() << endl;
 			status=false;
 		}
 	}
@@ -94,6 +94,7 @@ int main()
 	closeL=0;
 	for(Rectangle lmao:rekt)
 	{
+		cout << lmao.toString() << endl;
 		closeL+=lmao.getLength();
 	}
 
@@ -101,9 +102,14 @@ int main()
 
 	//Trivial solution
 	vector<Rectangle> sol;
-	sol=place(rekt[0],sol);
-	cout << sol[0].toString() << endl;
-	rekt[0].collision(rekt);
+	for(Rectangle ayy:rekt)
+	{
+		sol=place(ayy,sol);
+	}
+	for(Rectangle lmao:sol)
+	{
+		cout << lmao.toString() << endl;
+	}
 
 	return 0;
 }

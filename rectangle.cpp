@@ -43,7 +43,7 @@ bool Rectangle::collision(vector<Rectangle> rekt)
 //Check for collision against specific rectangle
 bool Rectangle::collision(Rectangle other)
 {
-	if ( x < other.getX()+other.getLength() && y < other.getY()+other.getLength() )
+	if ( x < other.getX()+other.getLength() && y < other.getY()+other.getWidth() )
 	{
 		cout << "Collision between ";
 		cout << toString();

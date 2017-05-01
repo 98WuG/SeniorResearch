@@ -23,4 +23,5 @@ class Rectangle {
 		int getY();
 		std::string getName();
 		bool collision(Rectangle);
+		std::string toString();
 };

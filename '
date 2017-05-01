@@ -25,7 +25,7 @@ Rectangle::Rectangle(int l, int w, string n)
 //Check for collision against specific rectangle
 bool Rectangle::collision(Rectangle other)
 {
-	if ( x < other.getX()+other.getLength() && y < other.getY()+other.getLength() )
+	if ( x < other.getX()+other.getLength() || y < other.getY()+other.getLength() )
 	{
 		cout << "Collision between ";
 		cout << name << "(" << length << "x" << width << "@(" << x << "," << y << "))";
@@ -84,5 +84,6 @@ string Rectangle::getName()
 
 string Rectangle::toString()
 {
-	return "first(" + to_string(length)  + "x" + to_string(width) + "@(" + to_string(x) + "," + to_string(y) + "))";
+	string xstr = x.to_string();
+	return "first" + x.str()  + "x" + y + "@(" + x + "," + y + "))";
 }

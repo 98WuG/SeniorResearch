@@ -6,13 +6,20 @@
 
 using namespace std;
 
+//Check for any collisions in vector rekt
 bool checkCollision( vector<Rectangle> rekt )
 {
 	bool status=false;
 	for(int i=0; i < rekt.size(); i++)
+	{
 		for(int j=i+1; j < rekt.size(); j++)
+		{
 			if(rekt[i].collision(rekt[j]))
+			{
 				status=true;
+			}
+		}
+	}
 	return status;
 }
 
@@ -32,6 +39,8 @@ int main()
 		//Add to vector "rekt" and print out information
 		rekt.push_back( Rectangle(x,y,name) );
 	}
+
+	rekt[0].setY(10);
 
 	cout << "Added " << rekt.size() << " rectangles\n" << endl;
 

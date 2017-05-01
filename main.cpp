@@ -4,6 +4,9 @@
 #include <string>
 #include <vector>
 
+int closeW;
+int closeL;
+
 using namespace std;
 
 //Check for any collisions in vector rekt
@@ -40,6 +43,30 @@ vector<Rectangle> insertionSort(vector<Rectangle> rekt)
 	return rekt;
 }
 
+vector<Rectangle> place(Rectangle meme, vector<Rectangle> sol)
+{
+	bool status=true;
+	while(status)
+	{
+		if(meme.getY()+meme.getWidth() > closeW)
+		{
+			meme.setY(0);
+			meme.setX(meme.getX()+1);
+		}			
+		else if(meme.collision(sol))
+		{
+			meme.setY(meme.getY()+1);
+		}
+		else
+		{
+			cout << meme.getName() << " " << meme.getY() << " " << meme.getX() << endl;
+			status=false;
+		}
+	}
+	sol.push_back(meme);
+	return sol;
+}
+
 
 int main()
 {
@@ -63,17 +90,20 @@ int main()
 	rekt=insertionSort(rekt);
 
 	//Initial enclosing rectangle
-	int closeW=rekt[0].getWidth();
-	int closeL=0;
+	closeW=rekt[0].getWidth();
+	closeL=0;
 	for(Rectangle lmao:rekt)
 	{
 		closeL+=lmao.getLength();
 	}
 
-	cout << "Enclosing length x width: " << closeL << "x" << closeW << endl;
+	cout << "Enclosing length x width: " << closeL << "x" << closeW << "\n" << endl;
 
-
-	checkCollision(rekt);
+	//Trivial solution
+	vector<Rectangle> sol;
+	sol=place(rekt[0],sol);
+	cout << sol[0].toString() << endl;
+	rekt[0].collision(rekt);
 
 	return 0;
 }

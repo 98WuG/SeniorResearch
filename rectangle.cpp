@@ -22,6 +22,24 @@ Rectangle::Rectangle(int l, int w, string n)
 	name=n;
 }
 
+//Check for collision against all other rectangles
+bool Rectangle::collision(vector<Rectangle> rekt)
+{
+	bool status=false;
+	for(Rectangle lmao:rekt)
+	{
+		if(name != lmao.getName())
+		{
+			if(collision(lmao))
+			{
+				status=true;
+			}
+		}
+	}
+	return status;
+}
+
+
 //Check for collision against specific rectangle
 bool Rectangle::collision(Rectangle other)
 {

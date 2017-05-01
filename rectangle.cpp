@@ -28,9 +28,9 @@ bool Rectangle::collision(Rectangle other)
 	if ( x < other.getX()+other.getLength() && y < other.getY()+other.getLength() )
 	{
 		cout << "Collision between ";
-		cout << name << "(" << length << "x" << width << "@(" << x << "," << y << "))";
+		cout << toString();
 		cout << " and ";
-		cout << other.getName() << "(" << other.getLength() << "x" << other.getWidth() << "@(" << other.getX() << "," << other.getY() << "))" << endl;
+		cout << other.toString() << endl;
 		return true;
 	}
 	else
@@ -84,5 +84,5 @@ string Rectangle::getName()
 
 string Rectangle::toString()
 {
-	return "first(" + to_string(length)  + "x" + to_string(width) + "@(" + to_string(x) + "," + to_string(y) + "))";
+	return name + "(" + to_string(length)  + "x" + to_string(width) + "@(" + to_string(x) + "," + to_string(y) + "))";
 }

@@ -9,6 +9,8 @@ int closeL;
 
 using namespace std;
 
+vector<string> sols;
+
 //Check for any collisions in vector rekt
 bool checkCollision( vector<Rectangle> rekt )
 {
@@ -48,6 +50,13 @@ vector<Rectangle> place(Rectangle meme, vector<Rectangle> sol)
 	bool status=true;
 	while(status)
 	{
+		if(meme.getX()+meme.getLength() > closeL)
+		{
+			cout << "Error: Exceeded bounding box" << endl;
+			sol.clear();
+			sol.push_back(Rectangle(0,0,meme.getName()));
+			return sol;
+		}
 		if(meme.getY()+meme.getWidth() > closeW)
 		{
 			meme.setY(0);
@@ -67,6 +76,19 @@ vector<Rectangle> place(Rectangle meme, vector<Rectangle> sol)
 	return sol;
 }
 
+vector<Rectangle> solve(vector<Rectangle> rekt)
+{
+	vector<Rectangle> sol;
+	for(Rectangle goodone:rekt)
+	{
+		sol=place(goodone,sol);
+	}
+	for(Rectangle niceone:sol)
+	{
+		cout << niceone.toString() << endl;
+	}
+	return sol;
+}
 
 int main()
 {
@@ -82,7 +104,7 @@ int main()
 		int y = stoi( str.substr(2,1) );
 		string name = str.substr(4,str.length()-1);
 		//Add to vector "rekt" and print out information
-		rekt.push_back( Rectangle(x,y,name) );
+		rekt.push_back(Rectangle(x,y,name));
 	}
 
 	//Sort from greatest width to smallest width
@@ -100,15 +122,26 @@ int main()
 
 	cout << "Enclosing length x width: " << closeL << "x" << closeW << "\n" << endl;
 
-	//Trivial solution
+	//Solve
 	vector<Rectangle> sol;
-	for(Rectangle ayy:rekt)
+	int ogL = closeL;
+	int ogW = closeW;
+	for(int i = 0; i <= ogL-ogW; i++)
 	{
-		sol=place(ayy,sol);
+		closeL--;
+		closeW++;
+		sol=solve(rekt);
+		string entry = "Enclosing box of " + to_string(closeL) + "x" + to_string(closeW) + ":\n";
+		for(Rectangle meme:sol)
+		{
+			entry += meme.toString() + "\n";
+		}
+		sols.push_back(entry);
 	}
-	for(Rectangle lmao:sol)
+
+	for(string kms:sols)
 	{
-		cout << lmao.toString() << endl;
+		cout << kms << endl;
 	}
 
 	return 0;

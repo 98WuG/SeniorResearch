@@ -140,10 +140,5 @@ int main()
 		sols.push_back(entry);
 	}
 
-//	for(string kms:sols)
-//	{
-//		cout << kms << endl;
-//	}
-
 	return 0;
 }

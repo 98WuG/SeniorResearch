@@ -45,10 +45,10 @@ bool Rectangle::collision(Rectangle other)
 {
 	if ( x < other.getX()+other.getLength() && y < other.getY()+other.getWidth() )
 	{
-		cout << "Collision between ";
+		/*cout << "Collision between ";
 		cout << toString();
 		cout << " and ";
-		cout << other.toString() << endl;
+		cout << other.toString() << endl;*/
 		return true;
 	}
 	else

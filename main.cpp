@@ -68,7 +68,7 @@ vector<Rectangle> place(Rectangle meme, vector<Rectangle> sol)
 		}
 		else
 		{
-			cout << meme.getName() << " " << meme.getX() << " " << meme.getY() << endl;
+			//cout << meme.getName() << " " << meme.getX() << " " << meme.getY() << endl;
 			status=false;
 		}
 	}
@@ -130,8 +130,9 @@ int main()
 	{
 		closeL--;
 		closeW++;
+		string entry = "\nEnclosing box of " + to_string(closeL) + "x" + to_string(closeW) + ":\n";
+		cout << entry << endl;
 		sol=solve(rekt);
-		string entry = "Enclosing box of " + to_string(closeL) + "x" + to_string(closeW) + ":\n";
 		for(Rectangle meme:sol)
 		{
 			entry += meme.toString() + "\n";
@@ -139,10 +140,10 @@ int main()
 		sols.push_back(entry);
 	}
 
-	for(string kms:sols)
-	{
-		cout << kms << endl;
-	}
+//	for(string kms:sols)
+//	{
+//		cout << kms << endl;
+//	}
 
 	return 0;
 }

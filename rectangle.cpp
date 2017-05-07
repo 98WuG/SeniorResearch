@@ -43,18 +43,71 @@ bool Rectangle::collision(vector<Rectangle> rekt)
 //Check for collision against specific rectangle
 bool Rectangle::collision(Rectangle other)
 {
-	if ( x < other.getX()+other.getLength() && y < other.getY()+other.getWidth() )
+	/*if ( (x+length >= other.getX() && x < other.getX()+other.getLength()) && (y+length >= other.getY() && y < other.getY()+other.getWidth()))
 	{
-		/*cout << "Collision between ";
+		cout << "Collision between ";
 		cout << toString();
 		cout << " and ";
-		cout << other.toString() << endl;*/
+		cout << other.toString() << endl;
+		return true;
+	}*/
+	/*
+	//Top right
+	if(x < other.getX()+other.getLength() && y < other.getY()+other.getWidth())
+	{
+		if(other.getX() <= x && other.getY() <= y)
+		{
+			return true;
+		}
+	}
+	//Top left
+	else if(x+length > other.getX() && y < other.getY()+other.getWidth())
+	{
+		if(other.getX() + other.getLength() >= x + length && other.getY() < y)
+		{
+			return true;
+		}
+	}
+	//Bottom left
+	else if(x+length > other.getX() && y+width > other.getY())
+	{
+		if(other.getX()+other.getLength() > x+length && other.getY()+other.getWidth() <= y+width)
+		{
+			return true;
+		}
+	}
+	//Bottom right
+	else if(x < other.getX()+other.getLength() && y + width > other.getY())
+	{
+		if(other.getX() <= x && other.getY()+other.getWidth() >= y+width)
+		{
+			return true;
+		}
 		return true;
 	}
 	else
 	{
 		return false;
 	}
+	*/
+	bool status=false;
+	for(int i1 = 0; i1 < other.getLength(); i1++)
+	{
+		for(int j1=0; j1 < other.getWidth(); j1++)
+		{
+			for(int i2=0; i2 < length; i2++)
+			{
+				for(int j2=0; j2 < width; j2++)
+				{
+					if(other.getX()+i1==x+i2 && other.getY()+j1==y+j2)
+					{
+						status=true;
+					}
+				}
+			}
+		}
+	}
+	return status;
 }
 
 //getsetters

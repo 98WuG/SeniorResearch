@@ -4,8 +4,8 @@
 #include <string>
 #include <vector>
 
-int closeW;
-int closeL;
+double closeW;
+double closeL;
 
 using namespace std;
 
@@ -61,7 +61,7 @@ vector<Rectangle> place(Rectangle meme, vector<Rectangle> sol)
 		{
 			meme.setY(0);
 			meme.setX(meme.getX()+1);
-		}			
+		}
 		else if(meme.collision(sol))
 		{
 			meme.setY(meme.getY()+1);
@@ -93,6 +93,8 @@ vector<Rectangle> solve(vector<Rectangle> rekt)
 int main()
 {
 	//Read in config file
+	double ratio;
+	cin>>ratio;
 	ifstream file("config");
 	string str;
 	vector<Rectangle> rekt;
@@ -100,11 +102,11 @@ int main()
 	while (std::getline(file, str))
 	{
 		//Parse line by line by "x y name"
-		int x = stoi( str.substr(0,1) );
-		int y = stoi( str.substr(2,1) );
+		int l = stoi( str.substr(0,1) );
+		int w = stoi( str.substr(2,1) );
 		string name = str.substr(4,str.length()-1);
 		//Add to vector "rekt" and print out information
-		rekt.push_back(Rectangle(x,y,name));
+		rekt.push_back(Rectangle(l,w,name));
 	}
 
 	//Sort from greatest width to smallest width
@@ -119,26 +121,64 @@ int main()
 		cout << lmao.toString() << endl;
 		closeL+=lmao.getLength();
 	}
+	int sum=closeW+closeL;
+	closeW=sum/(ratio+1);
+	closeL=sum-sum/(ratio+1);
 
 	cout << "Enclosing length x width: " << closeL << "x" << closeW << "\n" << endl;
 
 	//Solve
 	vector<Rectangle> sol;
-	int ogL = closeL;
+	/*int ogL = closeL;
 	int ogW = closeW;
 	for(int i = 0; i <= ogL-ogW; i++)
 	{
 		closeL--;
-		closeW++;
-		string entry = "\nEnclosing box of " + to_string(closeL) + "x" + to_string(closeW) + ":\n";
+		closeW++;*/
+	bool status=true;
+	string entry;
+	while(status)
+	{
+		entry = "\nEnclosing box of " + to_string(closeL) + "x" + to_string(closeW) + ":\n";
 		cout << entry << endl;
+		closeL=closeL-ratio;
+		closeW--;
 		sol=solve(rekt);
-		for(Rectangle meme:sol)
-		{
-			entry += meme.toString() + "\n";
-		}
-		sols.push_back(entry);
+		if(sol[0].getWidth()==0 && sol[0].getLength()==0)
+			status=false;
 	}
+	closeW++;
+	closeL+=ratio;
+	sol=solve(rekt);
 
-	return 0;
+	//Min-max function
+	int xMax;
+	int yMax;
+	for(int i = 0; i < sol.size(); i++)
+	{
+		int otherX=sol[i].getX()+sol[i].getLength();
+		int otherY=sol[i].getY()+sol[i].getWidth();
+		if(otherX > xMax)
+		{
+			xMax=otherX;
+		}
+		if(otherY > yMax)
+		{
+			yMax=otherY;
+		}
+	}
+	closeL=xMax;
+	closeW=yMax;
+	ofstream output;
+	output.open("rectangles.txt");
+	cout << "Final enclosing: " << closeL << "x" << closeW << endl;
+	output << closeL << endl;
+	output << closeW << endl;
+	for(Rectangle meme:sol)
+	{
+		entry += meme.toString() + "\n";
+		output << "rectangle " << meme.getX()*10 << "," << meme.getY()*10 << " " << meme.getX()*10+meme.getLength()*10 << "," << meme.getY()*10+meme.getWidth()*10 << endl;
+	}
+	output.close();
+0;
 }

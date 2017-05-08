@@ -14,4 +14,4 @@ rectangles="$(tail -n +3 $file | tr '\n' ' ')"
 
 convert -size "$length"x"$width" xc:skyblue -fill white -stroke black -draw "$rectangles" 1.jpg
 
-feh 1.jpg --auto-zoom
+feh 1.jpg --auto-zoom &

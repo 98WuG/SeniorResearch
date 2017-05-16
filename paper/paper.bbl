@@ -1,0 +1,21 @@
+\begin{thebibliography}{1}
+
+\bibitem{knolling}
+Laura Worrick.
+\newblock The art of knolling, 2015.
+
+\bibitem{tilings}
+Richard P.~Stanley Federico~Ardila.
+\newblock Tilings.
+
+\bibitem{first-fit}
+Matt Perdeck.
+\newblock Fast optimizing rectangle packing algorithm for building css sprites,
+  2011.
+
+\bibitem{thousand}
+Jukka Jyl{\"a}nki.
+\newblock A thousand ways to pack the bin - a practical approach to
+  two-dimensional rectangle bin packing, 2010.
+
+\end{thebibliography}

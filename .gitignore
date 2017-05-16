@@ -3,3 +3,6 @@ config
 useful
 1.jpg
 rectangles.txt
+*.aux
+*.log
+*.toc

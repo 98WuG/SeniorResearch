@@ -125,16 +125,8 @@ int main()
 	closeW=sum/(ratio+1);
 	closeL=sum-sum/(ratio+1);
 
-	cout << "Enclosing length x width: " << closeL << "x" << closeW << "\n" << endl;
-
 	//Solve
 	vector<Rectangle> sol;
-	/*int ogL = closeL;
-	int ogW = closeW;
-	for(int i = 0; i <= ogL-ogW; i++)
-	{
-		closeL--;
-		closeW++;*/
 	bool status=true;
 	string entry;
 	while(status)
@@ -169,6 +161,8 @@ int main()
 	}
 	closeL=xMax;
 	closeW=yMax;
+
+	//Write result to file "rectangles.txt"
 	ofstream output;
 	output.open("rectangles.txt");
 	cout << "Final enclosing: " << closeL << "x" << closeW << endl;
